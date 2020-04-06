@@ -199,7 +199,12 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-  throw new Error("Not implemented");
+  if (n % 1 || n < 2) return false;
+  if (n % 2 === 0) return n === 2;
+  for (let i = 3; i <= Math.sqrt(n); i += 2) {
+    if (n % i === 0) return false;
+  }
+  return true;
 }
 
 /**
@@ -233,5 +238,5 @@ module.exports = {
   getParallelipidedDiagonal: getParallelipidedDiagonal,
   roundToPowerOfTen: roundToPowerOfTen,
   isPrime: isPrime,
-  toNumber: toNumber,
+  toNumber: toNumber
 };
