@@ -16,7 +16,7 @@ const {
 
 it.optional = require('../extensions/it-optional');
 
-describe('02-numbers-tasks', () => {
+describe.only('02-numbers-tasks', () => {
   it.optional('getRectangleArea should return a square of rectangle', () => {
     assert.equal(getRectangleArea(5, 10), 50);
     assert.equal(getRectangleArea(5, 5), 25);
