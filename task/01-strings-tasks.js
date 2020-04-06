@@ -195,12 +195,11 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  const line1 = `┌${'─'.repeat(width - 2)}┐\n`;
-  const line2 = (height > 2) ? `│${' '.repeat(width - 2)}│\n`.repeat(height - 2): '';
-  const line3 = `└${'─'.repeat(width - 2)}┘\n`;
-  return line1 + line2 + line3;
+  let rect = `┌${'─'.repeat(width - 2)}┐\n`;
+  rect += height > 2 ? `│${' '.repeat(width - 2)}│\n`.repeat(height - 2) : '';
+  rect += `└${'─'.repeat(width - 2)}┘\n`;
+  return rect;
 }
-
 /**
  * Encode specified string with ROT13 cipher
  * See details:  https://en.wikipedia.org/wiki/ROT13
@@ -265,9 +264,10 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-  const suit = ['♣','♦','♥','♠'];
-  return cards.indexOf(value.slice(0, value.length - 1)) + suit.indexOf(value[value.length-1]) * 13;
+  /* const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+  const suit = ['♣', '♦', '♥', '♠'];
+  return cards.indexOf(value.slice(0, value.length - 1)) + suit.indexOf(value[value.length - 1]) * 13; */
+  throw new Error('Not implemented');
 }
 
 module.exports = {
