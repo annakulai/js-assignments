@@ -15,7 +15,6 @@ function distinctLettersString(value1, value2) {
   throw new Error('Not implemented');
 }
 
-
 /**
  * Takes a string with any characters.
  * Returns an object containing appearence of every distinct letters in lower case.
