@@ -406,7 +406,11 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  */
 function sortCitiesArray(arr) {
-  throw new Error('Not implemented');
+  return arr.sort((a, b) =>
+    a['country'] < b['country']
+      ? -1 : a['country'] > b['country']
+        ? 1 : a['city'] > b['city'] ? 1 : -1
+  );
 }
 
 /**
@@ -428,7 +432,9 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]
  */
 function getIdentityMatrix(n) {
-  throw new Error('Not implemented');
+  return new Array(n)
+    .fill(null)
+    .map((_, i) => new Array(n).fill(null).map((_, j) => (i === j ? 1 : 0)));
 }
 
 /**
@@ -493,9 +499,14 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(array, keySelector, valueSelector) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector){
+  const m = new Map();
+  array.map(e => 
+    m.set(keySelector(e), [...(m.get(keySelector(e)) || []), valueSelector(e)])
+  );
+  return m;
 }
+
 
 /**
  * Projects each element of the specified array to a sequence and flattens the
@@ -511,7 +522,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  throw new Error('Not implemented');
+  return arr.reduce((acc, el) => [...acc, ...childrenSelector(el)], []);
 }
 
 /**
