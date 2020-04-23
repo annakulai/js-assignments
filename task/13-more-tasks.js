@@ -12,7 +12,7 @@
  *   'abcdefghijklmnop',  'lmnopqrstuvwxyz'  => 'abcdefghijklmnopqrstuvwxyz'
  */
 function distinctLettersString(value1, value2) {
-  throw new Error('Not implemented');
+  return [...new Set([...value1, ...value2].sort())].join('');
 }
 
 /**
@@ -28,7 +28,10 @@ function distinctLettersString(value1, value2) {
  */
 
 function lowerLetters(value) {
-  throw new Error('Not implemented');
+  return value.replace(/[^a-z]/g, '').split('').sort().reduce((acc, el) => {
+    acc[el] = acc[el] + 1 || 1;
+    return acc;
+  }, {});
 }
 
 /**
