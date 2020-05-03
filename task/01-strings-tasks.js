@@ -265,8 +265,8 @@ function isString(value) {
  */
 function getCardId(value) {
   const cards = 'A 2 3 4 5 6 7 8 9 10 J Q K'.split(' ');
-  const suit = ['♣', '♦', '♥', '♠'];
-  return cards.indexOf(value.slice(0, value.length - 1)) + suit.indexOf(value[value.length - 1]) * 13;
+  const suit = ['♣', '♦', '♥', '♠'].indexOf(value[value.length - 1]) * 13;
+  return cards.indexOf(value.slice(0, value.length - 1)) + suit;
 }
 
 module.exports = {

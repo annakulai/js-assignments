@@ -312,7 +312,8 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-  throw new Error('Not implemented');
+  const digits = 'zero one two three four five six seven eight nine'.split(' ');
+  return arr.sort((a, b) => digits.indexOf(a) - digits.indexOf(b));
 }
 
 /**
@@ -362,7 +363,7 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-  throw new Error('Not implemented');
+  return arr.filter(el => el === item).length;
 }
 
 /**
@@ -538,7 +539,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-  throw new Error('Not implemented');
+  return indexes.reduce((acc, el) => acc[el], arr);
 }
 
 /**
@@ -560,7 +561,11 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  throw new Error('Not implemented');
+  const head = arr.slice(0, arr.length / 2);
+  const tail = arr.length % 2 === 1 
+    ? arr.slice(arr.length / 2 + 1) : arr.slice(arr.length / 2);
+  return arr.length % 2 === 1 
+    ? [...tail, arr[Math.floor(arr.length/2)], ...head] : [...tail, ...head];
 }
 
 module.exports = {
