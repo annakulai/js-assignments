@@ -124,7 +124,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value, "");
+  return str.replace(value, '');
 }
 
 /**
@@ -168,7 +168,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  return str.split(";");
+  return str.split(';');
 }
 
 /**
@@ -195,9 +195,9 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  let rect = `┌${"─".repeat(width - 2)}┐\n`;
-  rect += height > 2 ? `│${" ".repeat(width - 2)}│\n`.repeat(height - 2) : "";
-  rect += `└${"─".repeat(width - 2)}┘\n`;
+  let rect = `┌${'─'.repeat(width - 2)}┐\n`;
+  rect += height > 2 ? `│${' '.repeat(width - 2)}│\n`.repeat(height - 2) : '';
+  rect += `└${'─'.repeat(width - 2)}┘\n`;
   return rect;
 }
 /**
@@ -217,9 +217,9 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  const alphabetROT13 = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-  return str.replace(/[A-Z]/gi, (c) => alphabetROT13[alphabet.indexOf(c)]);
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const alphabetROT13 = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  return str.replace(/[A-Z]/gi, c => alphabetROT13[alphabet.indexOf(c)]);
 }
 
 /**
@@ -236,7 +236,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return typeof value === "string" || value instanceof String;
+  return typeof value === 'string' || value instanceof String;
 }
 
 /**
@@ -264,8 +264,8 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const cards = "A 2 3 4 5 6 7 8 9 10 J Q K".split(" ");
-  const suit = ["♣", "♦", "♥", "♠"].indexOf(value[value.length - 1]) * 13;
+  const cards = 'A 2 3 4 5 6 7 8 9 10 J Q K'.split(' ');
+  const suit = ['♣', '♦', '♥', '♠'].indexOf(value[value.length - 1]) * 13;
   return cards.indexOf(value.slice(0, value.length - 1)) + suit;
 }
 
@@ -284,5 +284,5 @@ module.exports = {
   getRectangleString: getRectangleString,
   encodeToRot13: encodeToRot13,
   isString: isString,
-  getCardId: getCardId,
+  getCardId: getCardId
 };

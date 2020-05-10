@@ -238,5 +238,5 @@ module.exports = {
   getParallelipidedDiagonal: getParallelipidedDiagonal,
   roundToPowerOfTen: roundToPowerOfTen,
   isPrime: isPrime,
-  toNumber: toNumber,
+  toNumber: toNumber
 };
