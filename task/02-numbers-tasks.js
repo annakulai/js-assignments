@@ -70,7 +70,7 @@ function getAverage(value1, value2) {
  *   (4, 2) (1, 6) => 5
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-  return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  return Math.hypot(x2 - x1, y2 - y1);
 }
 
 /**
@@ -124,7 +124,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-  return +String(value)[String(value).length - 1];
+  return value % 10;
 }
 
 /**
@@ -156,7 +156,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelipidedDiagonal(a, b, c) {
-  return Math.sqrt(a * a + b * b + c * c);
+  return Math.hypot(a, b, c);
 }
 
 /**
@@ -223,7 +223,7 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  return +value ? +value : def;
+  return +value || def;
 }
 
 module.exports = {
@@ -238,5 +238,5 @@ module.exports = {
   getParallelipidedDiagonal: getParallelipidedDiagonal,
   roundToPowerOfTen: roundToPowerOfTen,
   isPrime: isPrime,
-  toNumber: toNumber
+  toNumber: toNumber,
 };
