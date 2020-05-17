@@ -60,10 +60,9 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom(...args) {
-  /* if (!args.length) return null;
-  return x =>
-    args.reverse().reduce((acc, el, i) => acc + el * Math.pow(x, i), 0); */
-  throw new Error('Not implemented');
+  return (x) => {
+    return [...args].reverse().reduce((acc, item, i) => acc += item * Math.pow(x, i), 0);
+  }
 }
 
 /**
@@ -101,7 +100,14 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
-  throw new Error('Not implemented');
+  return () => {
+    for (let i = 0; i < attempts; i++) {
+      try {
+        return func();
+      } catch (e) { }
+    }
+    throw new Error();
+  }
 }
 
 /**
@@ -149,8 +155,8 @@ function logger(func, logFunc) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(fn) {
-  throw new Error('Not implemented');
+function partialUsingArguments(fn, ...x) {
+  return (...args) => fn(...x, ...args);
 }
 
 /**

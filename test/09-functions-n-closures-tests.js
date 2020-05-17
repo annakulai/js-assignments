@@ -12,7 +12,7 @@ const {
 
 it.optional = require('../extensions/it-optional');
 
-describe('09-functions-n-closures-tasks', () => {
+describe.only('09-functions-n-closures-tasks', () => {
   it.optional('getComposition should return the composition of two functions', () => {
     [
       {
@@ -101,7 +101,7 @@ describe('09-functions-n-closures-tasks', () => {
 
     assert.throws(
       () => {
-        retry(() =>{
+        retry(() => {
           throw new Error();
         }, 1)();
       },
@@ -124,7 +124,7 @@ describe('09-functions-n-closures-tasks', () => {
     assert.equal(
       log,
       'cos(3.141592653589793) starts\n'
-           + 'cos(3.141592653589793) ends\n',
+      + 'cos(3.141592653589793) ends\n',
       'logger function shoud log the start and end of the specified function'
     );
   });
@@ -154,7 +154,7 @@ describe('09-functions-n-closures-tasks', () => {
     assert.equal(
       log,
       'testLogger(["expected","test",1],0) starts\n'
-           + 'testLogger(["expected","test",1],0) ends\n',
+      + 'testLogger(["expected","test",1],0) ends\n',
       'logger function shoud log the end of specified function after calling'
     );
 
