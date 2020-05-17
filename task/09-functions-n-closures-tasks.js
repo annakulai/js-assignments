@@ -60,9 +60,10 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom(...args) {
-  return (x) => {
-    return [...args].reverse().reduce((acc, item, i) => acc += item * Math.pow(x, i), 0);
-  }
+  return x => {
+    return [...args].reverse().reduce((acc, item, i) => 
+      acc += item * Math.pow(x, i), 0);
+  };
 }
 
 /**
@@ -104,10 +105,10 @@ function retry(func, attempts) {
     for (let i = 0; i < attempts; i++) {
       try {
         return func();
-      } catch (e) { }
+      } catch (e) { console.log(e);}
     }
     throw new Error();
-  }
+  };
 }
 
 /**

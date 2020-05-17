@@ -23,7 +23,7 @@ function Rectangle(width, height) {
   return {
     width,
     height,
-    getArea: () => width * height,
+    getArea: () => width * height
   };
 }
 
@@ -139,12 +139,12 @@ const cssSelectorBuilder = {
 
   combine(selector1, combinator, selector2) {
     throw new Error('Not implemented');
-  },
+  }
 };
 
 module.exports = {
   Rectangle: Rectangle,
   getJSON: getJSON,
   fromJSON: fromJSON,
-  cssSelectorBuilder: cssSelectorBuilder,
+  cssSelectorBuilder: cssSelectorBuilder
 };
