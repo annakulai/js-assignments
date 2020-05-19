@@ -12,7 +12,7 @@ const {
 
 it.optional = require('../extensions/it-optional');
 
-describe.only('09-functions-n-closures-tasks', () => {
+describe('09-functions-n-closures-tasks', () => {
   it.optional('getComposition should return the composition of two functions', () => {
     [
       {
