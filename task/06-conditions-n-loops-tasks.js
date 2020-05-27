@@ -361,7 +361,39 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-  throw new Error('Not implemented');
+  const milli = 1000;
+  const time = (endDate.getTime() - startDate.getTime() - 0.1) / milli;
+  const min = 60;
+  const hour = 60;
+  const day = 24;
+  const month = 30;
+  const year = 12;
+
+  if (time <= 45) return 'a few seconds ago';
+  if (time <= 90) return 'a minute ago';
+  if (time <= 45 * min) {
+    return `${Math.round(time / min).toFixed(0)} minutes ago`;
+  }
+  if (time <= 90 * min) return `an hour ago`;
+  if (time <= 22 * min * hour) {
+    return `${Math.round(time / min / hour).toFixed(0)} hours ago`;
+  }
+  if (time <= 36 * min * hour) return `a day ago`;
+  if (time <= 25 * min * hour * day) {
+    return `${Math.round(time / min / hour / day).toFixed(0)} days ago`;
+  }
+  if (time <= 45 * min * hour * day) {
+    return `a month ago`;
+  }
+  if (time <= 345 * min * hour * day) {
+    return `${Math.round(time / min / hour / day / month)
+      .toFixed(0)} months ago`;
+  }
+  if (time <= 545 * min * hour * day) {
+    return `a year ago`;
+  }
+  return `${Math.round(time / min / hour / day / month / year)
+    .toFixed(0)} years ago`;
 }
 
 /**
@@ -476,18 +508,18 @@ function getMatrixProduct(m1, m2) {
  */
 function evaluateTicTacToePosition(position) {
   for (let i = 0; i < 3; i += 1) {
-    if (position[i][0] && position[i][0] === position[i][1] 
+    if (position[i][0] && position[i][0] === position[i][1]
       && position[i][1] === position[i][2]) {
       return position[i][0];
     }
-    if (position[0][i] && position[0][i] === position[1][i] 
+    if (position[0][i] && position[0][i] === position[1][i]
       && position[1][i] === position[2][i]) {
       return position[0][i];
     }
   }
-  if ((position[0][0] === position[1][1] 
-      && position[1][1] === position[2][2])
-    || (position[0][2] === position[1][1] 
+  if ((position[0][0] === position[1][1]
+    && position[1][1] === position[2][2])
+    || (position[0][2] === position[1][1]
       && position[1][1] === position[2][0])) {
     return position[1][1];
   }
