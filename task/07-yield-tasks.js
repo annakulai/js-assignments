@@ -100,11 +100,11 @@ function* getFibonacciSequence() {
 function* depthTraversalTree(root) {
   const nodes = [root];
 
-  while(nodes.length){
+  while (nodes.length) {
     const node = nodes.pop();
 
     yield node;
-    if(node.children) {
+    if (node.children) {
       nodes.push(...node.children.reverse());
     }
   }
@@ -134,9 +134,9 @@ function* depthTraversalTree(root) {
  */
 function* breadthTraversalTree(root) {
   const nodes = [root];
-  for(const node of nodes) {
+  for (const node of nodes) {
     yield node;
-    if(node.children) {
+    if (node.children) {
       nodes.push(...node.children);
     }
   }
@@ -157,7 +157,19 @@ function* breadthTraversalTree(root) {
  *   [ 1, 3, 5, ... ], [ -1 ] => [ -1, 1, 3, 5, ...]
  */
 function* mergeSortedSequences(source1, source2) {
-  throw new Error('Not implemented');
+  source1 = source1();
+  source2 = source2();
+  let val1 = source1.next();
+  let val2 = source2.next();
+  while (true) {
+    if (val2.done || val1.value < val2.value) {
+      yield val1.value;
+      val1 = source1.next();
+    } else {
+      yield val2.value;
+      val2 = source2.next();
+    }
+  }
 }
 
 module.exports = {

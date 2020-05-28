@@ -23,7 +23,7 @@ function Rectangle(width, height) {
   return {
     width,
     height,
-    getArea: () => width * height
+    getArea() { return width * height },
   };
 }
 
@@ -53,8 +53,8 @@ function getJSON(obj) {
  *
  */
 function fromJSON(proto, json) {
-  // return Object.setPrototypeOf(JSON.parse(json), proto);
   throw new Error('Not implemented');
+  //return Object.setPrototypeOf(JSON.parse(json), proto);
 }
 
 /**

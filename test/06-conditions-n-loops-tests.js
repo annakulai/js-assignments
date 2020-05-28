@@ -699,7 +699,7 @@ describe('06-conditions-n-loops-tasks', () => {
     [[
       [X, X, X],
       [O, O],
-      [O, ,]
+      [O, , ]
     ], [
       [, O, O],
       [X, X, X],
@@ -741,13 +741,13 @@ describe('06-conditions-n-loops-tasks', () => {
     [[
       [O, O, O],
       [, X, X],
-      [X, ,]
+      [X, , ]
     ], [
       [X, X],
       [O, O, O],
       [X, , X]
     ], [
-      [, ,],
+      [, , ],
       [X, , X],
       [O, O, O]
     ], [
@@ -781,11 +781,11 @@ describe('06-conditions-n-loops-tasks', () => {
     });
 
     [[
-      [, ,],
-      [, ,],
-      [, ,]
+      [, , ],
+      [, , ],
+      [, , ]
     ], [
-      [X, ,],
+      [X, , ],
       [O, O],
       [, , X]
     ], [
