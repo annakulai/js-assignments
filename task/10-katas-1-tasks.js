@@ -140,8 +140,14 @@ function canDominoesMakeRow(dominoes) {
  * [ 0, 1, 2, 5, 7, 8, 9] => '0-2,5,7-9'
  * [ 1, 2, 4, 5]          => '1,2,4,5'
  */
-function extractRanges(nums) {
-  throw new Error('Not implemented');
+function extractRanges(x) {
+  const grouped = x.map((el, i, a) => 
+    i === a.findIndex((x2, i2) => i2 - x2 === i - el) 
+    && a.filter((x2, i2) => i2 - x2 === i - el) || []);
+    
+  const ranged = grouped
+    .map(x => x.length > 2 ? `${x[0]}-${x[x.length - 1]}` : x);
+  return ranged.flat().join(',');
 }
 
 module.exports = {

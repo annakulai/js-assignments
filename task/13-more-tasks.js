@@ -53,7 +53,19 @@ function lowerLetters(value) {
  */
 
 function titleCaseConvert(title, minorWords) {
-  throw new Error('Not implemented');
+  const transformToArray = str => str.toLowerCase().split(' ');
+  const minorArray = !minorWords ? [] : transformToArray(minorWords);
+  const minorTitle = transformToArray(title);
+  const capitalize = x => x[0].toUpperCase() + x.slice(1);
+
+  return minorTitle.reduce((acc, x, i) => {
+    if (minorArray.includes(x) && i > 0) {
+      acc.push(x);
+    } else {
+      acc.push(capitalize(x));
+    }
+    return acc;
+  }, []).join(' ');
 }
 
 /**
@@ -73,8 +85,33 @@ function titleCaseConvert(title, minorWords) {
  *  '5 1 2 + 4 * + 3 -'  =>  14   // 5 + ((1 + 2) * 4) -3
  */
 
-function calcRPN(expr) {
-  throw new Error('Not implemented');
+function calcRPN(expression) {
+  const expr = expression.split(' ');
+  const stack = [];
+  if (expr === '') {
+    return 0;
+  }
+
+  for (let i = 0; i < expr.length; i++) {
+    if (!isNaN(expr[i]) && isFinite(expr[i])) {
+      stack.push(expr[i]);
+
+    } else {
+      const a = stack.pop();
+      const b = stack.pop();
+      if (expr[i] === '+') {
+        stack.push(parseInt(a) + parseInt(b));
+      } else if (expr[i] === '-') {
+        stack.push(parseInt(b) - parseInt(a));
+      } else if (expr[i] === '*') {
+        stack.push(parseInt(a) * parseInt(b));
+      } else if (expr[i] === '/') {
+        stack.push(parseInt(b) / parseInt(a));
+      }
+    }
+  }
+
+  return (stack.length > 1) ? stack[stack.length - 1] : stack[0];
 }
 
 module.exports = {

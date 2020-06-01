@@ -88,8 +88,8 @@ function getMostProfitFromStockQuotes(quotes) {
  */
 function UrlShortener() {
   this.urlAllowedChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
-                          'abcdefghijklmnopqrstuvwxyz' +
-                          "0123456789-_.~!*'();:@&=+$,/?#[]";
+    'abcdefghijklmnopqrstuvwxyz' +
+    "0123456789-_.~!*'();:@&=+$,/?#[]";
 }
 
 UrlShortener.prototype = {
