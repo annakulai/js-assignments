@@ -112,33 +112,150 @@ function fromJSON(proto, json) {
  *  For more examples see unit tests.
  */
 
-const cssSelectorBuilder = {
+class Selector {
+  constructor(value) {
+    this.string = value || '';
+    this.order = 0;
+    this.elementOrder = 1;
+    this.idOrder = 2;
+    this.classOrder = 3;
+    this.attributeOrder = 4;
+    this.pseudoClassOrder = 5;
+    this.pseudoElementOrder = 6;
+  }
+
+  validate(methodId) {
+    if (this.order > methodId) {
+      //eslint-disable-next-line
+      throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
+    }
+
+    if (this.order === methodId &&
+      (methodId === 1 || methodId === 2 || methodId === 6)) {
+      //eslint-disable-next-line
+      throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+    }
+  }
+
   element(value) {
-    throw new Error('Not implemented');
+    this.validate(this.elementOrder);
+    this.string += value;
+    this.order = this.elementOrder;
+    return this;
+  }
+
+  id(value) {
+    this.validate(this.idOrder);
+    this.string += `#${value}`;
+    this.order = this.idOrder;
+    return this;
+  }
+
+  class(value) {
+    this.validate(this.classOrder);
+    this.string += `.${value}`;
+    this.order = this.classOrder;
+    return this;
+  }
+
+  attr(value) {
+    this.validate(this.attributeOrder);
+    this.string += `[${value}]`;
+    this.order = this.attributeOrder;
+    return this;
+  }
+
+  pseudoClass(value) {
+    this.validate(this.pseudoClassOrder);
+    this.string += `:${value}`;
+    this.order = this.pseudoClassOrder;
+    return this;
+  }
+
+  pseudoElement(value) {
+    this.validate(this.pseudoElementOrder);
+    this.string += `::${value}`;
+    this.order = this.pseudoElementOrder;
+    return this;
+  }
+
+  stringify() {
+    return this.string;
+  }
+}
+
+class ElementSelector extends Selector {
+  constructor(value) {
+    super();
+    this.element(value);
+  }
+}
+
+class IDSelector extends Selector {
+  constructor(value) {
+    super();
+    this.id(value);
+  }
+}
+
+class ClassSelector extends Selector {
+  constructor(value) {
+    super();
+    this.class(value);
+  }
+}
+
+class AttrSelector extends Selector {
+  constructor(value) {
+    super();
+    this.attr(value);
+  }
+}
+
+class PseudoClassSelector extends Selector {
+  constructor(value) {
+    super();
+    this.pseudoClass(value);
+  }
+}
+
+class PseudoElementSelector extends Selector {
+  constructor(value) {
+    super();
+    this.pseudoElement(value);
+  }
+}
+
+const cssSelectorBuilder = {
+
+  element(value) {
+    return new ElementSelector(value);
   },
 
   id(value) {
-    throw new Error('Not implemented');
+    return new IDSelector(value);
   },
 
   class(value) {
-    throw new Error('Not implemented');
+    return new ClassSelector(value);
   },
 
   attr(value) {
-    throw new Error('Not implemented');
+    return new AttrSelector(value);
   },
 
   pseudoClass(value) {
-    throw new Error('Not implemented');
+    return new PseudoClassSelector(value);
   },
 
   pseudoElement(value) {
-    throw new Error('Not implemented');
+    return new PseudoElementSelector(value);
   },
 
   combine(selector1, combinator, selector2) {
-    throw new Error('Not implemented');
+    const combinedResult =
+      `${selector1.stringify()} ${combinator} ${selector2.stringify()}`;
+    return new Selector(combinedResult);
   }
 };
 
